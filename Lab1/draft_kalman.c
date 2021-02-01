@@ -1,9 +1,9 @@
 struct kalman_filtre{
-    float q = 0; // process noise variance
-    float r = 0; // measurement noise variance
-    float x = 0; // value
-    float p = 0; // estimation error covariance
-    float k = 0; // kalman gain
+    float q; // process noise variance
+    float r; // measurement noise variance
+    float x; // value
+    float p; // estimation error covariance
+    float k; // kalman gain
 };
 
 void init_kalman(struct kalman_filtre kalman_filtre, float q, float r, float initial_value){

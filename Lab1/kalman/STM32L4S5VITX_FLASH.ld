@@ -30,8 +30,8 @@ ENTRY(Reset_Handler)
 /* Highest address of the user mode stack */
 _estack = ORIGIN(RAM) + LENGTH(RAM);	/* end of "RAM" Ram type memory */
 
-_Min_Heap_Size = 0x200;	/* required amount of heap  */
-_Min_Stack_Size = 0x400;	/* required amount of stack */
+_Min_Heap_Size = 0x200 ;	/* required amount of heap  */
+_Min_Stack_Size = 0x400 ;	/* required amount of stack */
 
 /* Memories definition */
 MEMORY
@@ -130,8 +130,6 @@ SECTIONS
     _sdata = .;        /* create a global symbol at data start */
     *(.data)           /* .data sections */
     *(.data*)          /* .data* sections */
-    *(.RamFunc)        /* .RamFunc sections */
-    *(.RamFunc*)       /* .RamFunc* sections */
 
     . = ALIGN(4);
     _edata = .;        /* define a global symbol at data end */
