@@ -55,7 +55,7 @@ main-build: kalman.elf secondary-outputs
 
 # Tool invocations
 kalman.elf: $(OBJS) $(USER_OBJS) C:\Users\xx420mhfxx\STM32CubeIDE\workspace_1.5.0\kalman\STM32L4S5VITX_FLASH.ld
-	arm-none-eabi-gcc -o "kalman.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\xx420mhfxx\STM32CubeIDE\workspace_1.5.0\kalman\STM32L4S5VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "kalman.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\xx420mhfxx\STM32CubeIDE\workspace_1.5.0\kalman\STM32L4S5VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="kalman.map" -Wl,--gc-sections -static -L"C:\Users\xx420mhfxx\STM32CubeIDE\workspace_1.5.0\kalman\Core\Lib" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

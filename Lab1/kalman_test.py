@@ -25,9 +25,16 @@ class KalmanFilter(object):
 
         return self.x
 
-test_kalman = KalmanFilter(1, 1, 0, 0, 0)
+test_kalman = KalmanFilter(0.1, 0.1, 5, 0.5, 0.1)
 
 for x in test_array:
     print(test_kalman.update(x))
+
+print("///////")
+print(test_kalman.q)
+print(test_kalman.r)
+print(test_kalman.x)
+print(test_kalman.p)
+print(test_kalman.k)
 
 
