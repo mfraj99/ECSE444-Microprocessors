@@ -19,7 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "stdio.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -28,7 +28,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 #define ITM_Port32(n) (*((volatile unsigned long *) (0xE0000000+4*n)))
-#define VREFINT_CAL_Addr 0x1FFF75AA // get the calibration voltage
+#define VREFINT_CAL_Addr 0x1FFF75AA // get the calibration voltage, AB gives same value as AA
 #define VREFINT_CAL ((uint16_t*)VREFINT_CAL_Addr)
 /* USER CODE END PTD */
 
@@ -96,6 +96,7 @@ int main(void) {
 	MX_TIM2_Init();
 	MX_USART1_UART_Init();
 	MX_ADC1_Init();
+	//HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED); //causes raw to half, vdda to double
 	/* USER CODE BEGIN 2 */
 	/* USER CODE BEGIN 2 */
 
@@ -105,11 +106,13 @@ int main(void) {
 
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1, 1000);
-	uint16_t raw = HAL_ADC_GetValue(&hadc1);
 
-	uint16_t test = VREFINT_CAL;
+	uint16_t raw = HAL_ADC_GetValue(&hadc1); //ADC is a 12bit value, uint12_t, though 16 bit int shouldnt be problem
 
-	uint16_t vdda = 3000 * (test/raw);
+	uint16_t test = *(uint16_t*)VREFINT_CAL_Addr;
+
+	uint32_t vdda = 3000 * test / raw; // should be adc/reference, multiplication by 3000 not needed, check this
+	//also tried ADC1->DR instead of raw
 
 	/* USER CODE END 2 */
 
@@ -122,7 +125,7 @@ int main(void) {
 		// toggle led2 using blue user button
 		if (HAL_GPIO_ReadPin(USER_BUTTON_GPIO_Port, USER_BUTTON_Pin) == 0) { // button is active low
 			HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
-			HAL_Delay(500);
+			HAL_Delay(500); // delay shouldnt be necessary
 		}
 
 	}
@@ -179,7 +182,7 @@ void SystemClock_Config(void) {
 	PeriphClkInit.AdcClockSelection = RCC_ADCCLKSOURCE_PLLSAI1;
 	PeriphClkInit.PLLSAI1.PLLSAI1Source = RCC_PLLSOURCE_MSI;
 	PeriphClkInit.PLLSAI1.PLLSAI1M = 1;
-	PeriphClkInit.PLLSAI1.PLLSAI1N = 24;
+	PeriphClkInit.PLLSAI1.PLLSAI1N = 40;
 	PeriphClkInit.PLLSAI1.PLLSAI1P = RCC_PLLP_DIV2;
 	PeriphClkInit.PLLSAI1.PLLSAI1Q = RCC_PLLQ_DIV2;
 	PeriphClkInit.PLLSAI1.PLLSAI1R = RCC_PLLR_DIV2;
