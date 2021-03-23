@@ -48,7 +48,7 @@ UART_HandleTypeDef huart1;
 char global_buffer[100];
 float humidity;
 uint16_t magneto_values[3];
-uint16_t gyro_values[3];
+float gyro_values[3];
 float pressure;
 int counter = 0;
 /* USER CODE END PV */
