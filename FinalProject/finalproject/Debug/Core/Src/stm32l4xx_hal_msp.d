@@ -36,7 +36,8 @@ Core/Src/stm32l4xx_hal_msp.o: ../Core/Src/stm32l4xx_hal_msp.c \
  ../Core/Inc/../Components/lsm6dsl/lsm6dsl.h \
  ../Core/Inc/../Components/lsm6dsl/../Common/accelero.h \
  ../Core/Inc/../Components/lsm6dsl/../Common/gyro.h \
- ../Core/Inc/arm_math.h ../Drivers/CMSIS/Include/cmsis_compiler.h
+ ../Core/Inc/stm32l4s5i_iot01_gyro.h ../Core/Inc/arm_math.h \
+ ../Drivers/CMSIS/Include/cmsis_compiler.h
 
 ../Core/Inc/main.h:
 
@@ -115,6 +116,8 @@ Core/Src/stm32l4xx_hal_msp.o: ../Core/Src/stm32l4xx_hal_msp.c \
 ../Core/Inc/../Components/lsm6dsl/../Common/accelero.h:
 
 ../Core/Inc/../Components/lsm6dsl/../Common/gyro.h:
+
+../Core/Inc/stm32l4s5i_iot01_gyro.h:
 
 ../Core/Inc/arm_math.h:
 
