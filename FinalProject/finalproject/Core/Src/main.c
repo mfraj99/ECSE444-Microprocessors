@@ -56,17 +56,56 @@ int16_t old_accelero_values[3]; //keep track of last accelero values for calcula
 int current_note = 0; //for keeping track of which note is playing
 int current_volume = 4; //for keeping track of volume level, 5 levels of volume from 0 to 4
 
-int timer_counter = 0;
+//int timer_counter = 0;
 
 //sample arrays for pitches
-uint8_t C6_samples[43];
-uint8_t D6_samples[36];
-uint8_t E6_samples[33];
-uint8_t F6_samples[30];
-uint8_t G6_samples[27];
-uint8_t A6_samples[24];
-uint8_t B6_samples[21];
-uint8_t C7_samples[20];
+uint8_t C6_samples_v0[43];
+uint8_t C6_samples_v1[43];
+uint8_t C6_samples_v2[43];
+uint8_t C6_samples_v3[43];
+uint8_t C6_samples_v4[43];
+
+uint8_t D6_samples_v0[36];
+uint8_t D6_samples_v1[36];
+uint8_t D6_samples_v2[36];
+uint8_t D6_samples_v3[36];
+uint8_t D6_samples_v4[36];
+
+uint8_t E6_samples_v0[33];
+uint8_t E6_samples_v1[33];
+uint8_t E6_samples_v2[33];
+uint8_t E6_samples_v3[33];
+uint8_t E6_samples_v4[33];
+
+uint8_t F6_samples_v0[30];
+uint8_t F6_samples_v1[30];
+uint8_t F6_samples_v2[30];
+uint8_t F6_samples_v3[30];
+uint8_t F6_samples_v4[30];
+
+uint8_t G6_samples_v0[27];
+uint8_t G6_samples_v1[27];
+uint8_t G6_samples_v2[27];
+uint8_t G6_samples_v3[27];
+uint8_t G6_samples_v4[27];
+
+uint8_t A6_samples_v0[24];
+uint8_t A6_samples_v1[24];
+uint8_t A6_samples_v2[24];
+uint8_t A6_samples_v3[24];
+uint8_t A6_samples_v4[24];
+
+uint8_t B6_samples_v0[21];
+uint8_t B6_samples_v1[21];
+uint8_t B6_samples_v2[21];
+uint8_t B6_samples_v3[21];
+uint8_t B6_samples_v4[21];
+
+uint8_t C7_samples_v0[20];
+uint8_t C7_samples_v1[20];
+uint8_t C7_samples_v2[20];
+uint8_t C7_samples_v3[20];
+uint8_t C7_samples_v4[20];
 
 /* USER CODE END PV */
 
@@ -90,7 +129,11 @@ void C6_sample_populator() {
 		float modulus = (float) i / 43;
 		float radians = 6.283185 * modulus;
 		radians = (arm_sin_f32(radians) + 1);
-		C6_samples[i] = (uint8_t) radians;
+		C6_samples_v0[i] = (uint8_t) radians * 1;
+		C6_samples_v1[i] = (uint8_t) radians * 22;
+		C6_samples_v2[i] = (uint8_t) radians * 43;
+		C6_samples_v3[i] = (uint8_t) radians * 64;
+		C6_samples_v4[i] = (uint8_t) radians * 85;
 	}
 }
 
@@ -100,7 +143,11 @@ void D6_sample_populator() {
 		float modulus = (float) i / 36;
 		float radians = 6.283185 * modulus;
 		radians = (arm_sin_f32(radians) + 1);
-		D6_samples[i] = (uint8_t) radians;
+		D6_samples_v0[i] = (uint8_t) radians * 1;
+		D6_samples_v1[i] = (uint8_t) radians * 22;
+		D6_samples_v2[i] = (uint8_t) radians * 43;
+		D6_samples_v3[i] = (uint8_t) radians * 64;
+		D6_samples_v4[i] = (uint8_t) radians * 85;
 	}
 }
 
@@ -109,8 +156,12 @@ void E6_sample_populator() {
 	for (int i = 0; i < 33; i++) {
 		float modulus = (float) i / 33;
 		float radians = 6.283185 * modulus;
-		radians = (arm_sin_f32(radians) + 1) * 85;
-		E6_samples[i] = (uint8_t) radians;
+		radians = (arm_sin_f32(radians) + 1);
+		E6_samples_v0[i] = (uint8_t) radians * 1;
+		E6_samples_v1[i] = (uint8_t) radians * 22;
+		E6_samples_v2[i] = (uint8_t) radians * 43;
+		E6_samples_v3[i] = (uint8_t) radians * 64;
+		E6_samples_v4[i] = (uint8_t) radians * 85;
 	}
 }
 
@@ -119,8 +170,12 @@ void F6_sample_populator() {
 	for (int i = 0; i < 30; i++) {
 		float modulus = (float) i / 30;
 		float radians = 6.283185 * modulus;
-		radians = (arm_sin_f32(radians) + 1) * 85;
-		F6_samples[i] = (uint8_t) radians;
+		radians = (arm_sin_f32(radians) + 1);
+		F6_samples_v0[i] = (uint8_t) radians * 1;
+		F6_samples_v1[i] = (uint8_t) radians * 22;
+		F6_samples_v2[i] = (uint8_t) radians * 43;
+		F6_samples_v3[i] = (uint8_t) radians * 64;
+		F6_samples_v4[i] = (uint8_t) radians * 85;
 	}
 }
 
@@ -129,8 +184,12 @@ void G6_sample_populator() {
 	for (int i = 0; i < 27; i++) {
 		float modulus = (float) i / 27;
 		float radians = 6.283185 * modulus;
-		radians = (arm_sin_f32(radians) + 1) * 85;
-		G6_samples[i] = (uint8_t) radians;
+		radians = (arm_sin_f32(radians) + 1);
+		G6_samples_v0[i] = (uint8_t) radians * 1;
+		G6_samples_v1[i] = (uint8_t) radians * 22;
+		G6_samples_v2[i] = (uint8_t) radians * 43;
+		G6_samples_v3[i] = (uint8_t) radians * 64;
+		G6_samples_v4[i] = (uint8_t) radians * 85;
 	}
 
 }
@@ -140,8 +199,12 @@ void A6_sample_populator() {
 	for (int i = 0; i < 24; i++) {
 		float modulus = (float) i / 24;
 		float radians = 6.283185 * modulus;
-		radians = (arm_sin_f32(radians) + 1) * 85;
-		A6_samples[i] = (uint8_t) radians;
+		radians = (arm_sin_f32(radians) + 1);
+		A6_samples_v0[i] = (uint8_t) radians * 1;
+		A6_samples_v1[i] = (uint8_t) radians * 22;
+		A6_samples_v2[i] = (uint8_t) radians * 43;
+		A6_samples_v3[i] = (uint8_t) radians * 64;
+		A6_samples_v4[i] = (uint8_t) radians * 85;
 	}
 }
 
@@ -150,8 +213,12 @@ void B6_sample_populator() {
 	for (int i = 0; i < 21; i++) {
 		float modulus = (float) i / 21;
 		float radians = 6.283185 * modulus;
-		radians = (arm_sin_f32(radians) + 1) * 85;
-		B6_samples[i] = (uint8_t) radians;
+		radians = (arm_sin_f32(radians) + 1);
+		B6_samples_v0[i] = (uint8_t) radians * 1;
+		B6_samples_v1[i] = (uint8_t) radians * 22;
+		B6_samples_v2[i] = (uint8_t) radians * 43;
+		B6_samples_v3[i] = (uint8_t) radians * 64;
+		B6_samples_v4[i] = (uint8_t) radians * 85;
 	}
 }
 
@@ -160,11 +227,16 @@ void C7_sample_populator() {
 	for (int i = 0; i < 20; i++) {
 		float modulus = (float) i / 20;
 		float radians = 6.283185 * modulus;
-		radians = (arm_sin_f32(radians) + 1) * 85;
-		C7_samples[i] = (uint8_t) radians;
+		radians = (arm_sin_f32(radians) + 1);
+		C7_samples_v0[i] = (uint8_t) radians * 1;
+		C7_samples_v1[i] = (uint8_t) radians * 22;
+		C7_samples_v2[i] = (uint8_t) radians * 43;
+		C7_samples_v3[i] = (uint8_t) radians * 64;
+		C7_samples_v4[i] = (uint8_t) radians * 85;
 	}
 }
 
+// calculates changes in accelerometer axes and changes the note to be played accordingly
 void pitch_volume_changer(int16_t old_accelero_values[3],
 		int16_t new_accelero_values[3]) {
 	int16_t difference_values[3];
@@ -172,77 +244,202 @@ void pitch_volume_changer(int16_t old_accelero_values[3],
 	difference_values[1] = new_accelero_values[1] - old_accelero_values[1];
 	difference_values[2] = new_accelero_values[2] - old_accelero_values[2];
 
-	if ((difference_values[0] > 30) || (difference_values[0] < -30)) {
-		if ((difference_values[0] > 0) && (current_note > 0) && (difference_values[0] < 100)) {
+	if ((difference_values[0] > 10) || (difference_values[0] < -10)) {
+		if ((difference_values[0] > 0) && (current_note > 0)
+				&& (difference_values[0] < 100)) {
 			current_note -= 1;
-		} else if ((difference_values[0] < 0) && (current_note < 7) && (difference_values[0] > -100)) {
+		} else if ((difference_values[0] < 0) && (current_note < 7)
+				&& (difference_values[0] > -100)) {
 			current_note += 1;
 		}
 	}
-	if (abs(difference_values[1] > 12)) {
-		if ((difference_values[1] < 0) && (current_volume > 0)) {
+	if ((difference_values[1] > 10) || (difference_values[1] < -10)) {
+		if ((difference_values[1] < 0) && (current_volume > 0)
+				&& (difference_values[1] < 100)) {
 			current_volume -= 1;
-		} else if ((difference_values[1] > 0) && (current_volume < 4)) {
+		} else if ((difference_values[1] > 0) && (current_volume < 4)
+				&& (difference_values[1] > -100)) {
 			current_volume += 1;
 		}
 	}
 }
 
+// translates the note iterator to one of the sample arrays to be sent to the DAC
 void pitch_volume_setter() {
 	uint8_t *pitch_pointer;
 	int volume;
 	int sample_size;
 	switch (current_note) {
 	case 0:
-		pitch_pointer = C6_samples;
+		//pitch_pointer = C6_samples;
 		sample_size = 43;
+		switch (current_volume) {
+		case 0:
+			pitch_pointer = C6_samples_v0;
+			break;
+		case 1:
+			pitch_pointer = C6_samples_v1;
+			break;
+		case 2:
+			pitch_pointer = C6_samples_v2;
+			break;
+		case 3:
+			pitch_pointer = C6_samples_v3;
+			break;
+		case 4:
+			pitch_pointer = C6_samples_v4;
+			break;
+		}
 		break;
 	case 1:
-		pitch_pointer = D6_samples;
+		//pitch_pointer = D6_samples;
 		sample_size = 36;
+		switch (current_volume) {
+		case 0:
+			pitch_pointer = D6_samples_v0;
+			break;
+		case 1:
+			pitch_pointer = D6_samples_v1;
+			break;
+		case 2:
+			pitch_pointer = D6_samples_v2;
+			break;
+		case 3:
+			pitch_pointer = D6_samples_v3;
+			break;
+		case 4:
+			pitch_pointer = D6_samples_v4;
+			break;
+		}
 		break;
 	case 2:
-		pitch_pointer = E6_samples;
+		//pitch_pointer = E6_samples;
 		sample_size = 33;
+		switch (current_volume) {
+		case 0:
+			pitch_pointer = E6_samples_v0;
+			break;
+		case 1:
+			pitch_pointer = E6_samples_v1;
+			break;
+		case 2:
+			pitch_pointer = E6_samples_v2;
+			break;
+		case 3:
+			pitch_pointer = E6_samples_v3;
+			break;
+		case 4:
+			pitch_pointer = E6_samples_v4;
+			break;
+		}
+
 		break;
 	case 3:
-		pitch_pointer = F6_samples;
+		//pitch_pointer = F6_samples;
 		sample_size = 30;
+		switch (current_volume) {
+		case 0:
+			pitch_pointer = F6_samples_v0;
+			break;
+		case 1:
+			pitch_pointer = F6_samples_v1;
+			break;
+		case 2:
+			pitch_pointer = F6_samples_v2;
+			break;
+		case 3:
+			pitch_pointer = F6_samples_v3;
+			break;
+		case 4:
+			pitch_pointer = F6_samples_v4;
+			break;
+		}
 		break;
 	case 4:
-		pitch_pointer = G6_samples;
+		//pitch_pointer = G6_samples;
 		sample_size = 27;
+		switch (current_volume) {
+		case 0:
+			pitch_pointer = G6_samples_v0;
+			break;
+		case 1:
+			pitch_pointer = G6_samples_v1;
+			break;
+		case 2:
+			pitch_pointer = G6_samples_v2;
+			break;
+		case 3:
+			pitch_pointer = G6_samples_v3;
+			break;
+		case 4:
+			pitch_pointer = G6_samples_v4;
+			break;
+		}
 		break;
 	case 5:
-		pitch_pointer = A6_samples;
+		//pitch_pointer = A6_samples;
 		sample_size = 24;
+		switch (current_volume) {
+		case 0:
+			pitch_pointer = A6_samples_v0;
+			break;
+		case 1:
+			pitch_pointer = A6_samples_v1;
+			break;
+		case 2:
+			pitch_pointer = A6_samples_v2;
+			break;
+		case 3:
+			pitch_pointer = A6_samples_v3;
+			break;
+		case 4:
+			pitch_pointer = A6_samples_v4;
+			break;
+		}
 		break;
 	case 6:
-		pitch_pointer = B6_samples;
+		//pitch_pointer = B6_samples;
 		sample_size = 21;
+		switch (current_volume) {
+		case 0:
+			pitch_pointer = B6_samples_v0;
+			break;
+		case 1:
+			pitch_pointer = B6_samples_v1;
+			break;
+		case 2:
+			pitch_pointer = B6_samples_v2;
+			break;
+		case 3:
+			pitch_pointer = B6_samples_v3;
+			break;
+		case 4:
+			pitch_pointer = B6_samples_v4;
+			break;
+		}
 		break;
 	case 7:
-		pitch_pointer = C7_samples;
+		//pitch_pointer = C7_samples;
 		sample_size = 20;
+		switch (current_volume) {
+		case 0:
+			pitch_pointer = C7_samples_v0;
+			break;
+		case 1:
+			pitch_pointer = C7_samples_v1;
+			break;
+		case 2:
+			pitch_pointer = C7_samples_v2;
+			break;
+		case 3:
+			pitch_pointer = C7_samples_v3;
+			break;
+		case 4:
+			pitch_pointer = C7_samples_v4;
+			break;
+		}
 		break;
 
-	}
-	switch (current_volume) {
-	case 0:
-		volume = 0;
-		break;
-	case 1:
-		volume = 22;
-		break;
-	case 2:
-		volume = 43;
-		break;
-	case 3:
-		volume = 64;
-		break;
-	case 4:
-		volume = 85;
-		break;
 	}
 
 	HAL_DAC_Stop_DMA(&hdac1, DAC_CHANNEL_1);
@@ -251,17 +448,17 @@ void pitch_volume_setter() {
 }
 
 /*
-// basic interrupt for C6 tone with no DMA
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
-	if (htim == &htim2) {
-		timer_countounter % 44;
-		HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1, DAC_ALIGN_8B_R,
-				C6_samples[timer_counter]er = timer_c * 85);
-		timer_counter++;
+ // basic interrupt for C6 tone with no DMA
+ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+ if (htim == &htim2) {
+ timer_countounter % 44;
+ HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1, DAC_ALIGN_8B_R,
+ C6_samples[timer_counter]er = timer_c * 85);
+ timer_counter++;
 
-	}
-}
-*/
+ }
+ }
+ */
 
 /* USER CODE END 0 */
 
@@ -319,11 +516,12 @@ int main(void) {
 	BSP_ACCELERO_AccGetXYZ(accelero_values);
 	memset(global_buffer, 0, sizeof(global_buffer));
 	// first value is side to side (long side), second value is up-down, third value is front-back (short side)
-	sprintf(global_buffer, "Accelerometer values are %d, %d, %d Current note: %d",
+	sprintf(global_buffer,
+			"Accelerometer values are %d, %d, %d Current note: %d Current volume: %d",
 			(int) accelero_values[0], (int) accelero_values[1],
-			(int) accelero_values[2], current_note);
-	HAL_DAC_Start_DMA(&hdac1, DAC_CHANNEL_1, C6_samples, 43,
-		DAC_ALIGN_8B_R);
+			(int) accelero_values[2], current_note, current_volume);
+	HAL_DAC_Start_DMA(&hdac1, DAC_CHANNEL_1, C6_samples_v4, 43,
+	DAC_ALIGN_8B_R);
 
 	HAL_UART_Transmit(&huart1, (uint8_t*) global_buffer, sizeof(global_buffer),
 			1000);
@@ -339,9 +537,10 @@ int main(void) {
 		BSP_ACCELERO_AccGetXYZ(accelero_values);
 		memset(global_buffer, 0, sizeof(global_buffer));
 		// first value is side to side (long side), second value is up-down, third value is front-back (short side)
-		sprintf(global_buffer, "Accelerometer values are %d, %d, %d Current note: %d",
+		sprintf(global_buffer,
+				"Accelerometer values are %d, %d, %d Current note: %d Current volume: %d",
 				(int) accelero_values[0], (int) accelero_values[1],
-				(int) accelero_values[2], current_note);
+				(int) accelero_values[2], current_note, current_volume);
 		pitch_volume_changer(old_accelero_values, accelero_values);
 		pitch_volume_setter();
 

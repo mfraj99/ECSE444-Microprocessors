@@ -1,5 +1,6 @@
 "Core/Components/lsm6dsl/lsm6dsl.o"
 "Core/Src/main.o"
+"Core/Src/sample_populator.o"
 "Core/Src/stm32l4s5i_iot01.o"
 "Core/Src/stm32l4s5i_iot01_accelero.o"
 "Core/Src/stm32l4s5i_iot01_gyro.o"
