@@ -34,9 +34,9 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 #include "stm32l4s5i_iot01.h"
 #include "stm32l4s5i_iot01_accelero.h"
-#include "stm32l4s5i_iot01_gyro.h"
 #include "arm_math.h"
 #include "math.h"
+#include "kalman_filtre.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

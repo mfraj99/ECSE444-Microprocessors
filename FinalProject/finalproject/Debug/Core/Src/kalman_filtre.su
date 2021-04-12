@@ -1,0 +1,3 @@
+kalman_filtre.c:17:22:create_filtre	64	static
+kalman_filtre.c:29:7:c_kalman_update	16	static
+kalman_filtre.c:39:5:c_kalman_filtre	40	static
