@@ -26,7 +26,6 @@ Core/Src/stm32l4xx_hal_msp.o: ../Core/Src/stm32l4xx_hal_msp.c \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_flash_ramfunc.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_i2c.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_i2c_ex.h \
- ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_ospi.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim.h \
@@ -37,9 +36,8 @@ Core/Src/stm32l4xx_hal_msp.o: ../Core/Src/stm32l4xx_hal_msp.c \
  ../Core/Inc/../Components/lsm6dsl/lsm6dsl.h \
  ../Core/Inc/../Components/lsm6dsl/../Common/accelero.h \
  ../Core/Inc/../Components/lsm6dsl/../Common/gyro.h \
- ../Core/Inc/stm32l4s5i_iot01_qspi.h \
- ../Core/Inc/../Components/mx25r6435f/mx25r6435f.h ../Core/Inc/arm_math.h \
- ../Drivers/CMSIS/Include/cmsis_compiler.h ../Core/Inc/kalman_filtre.h
+ ../Core/Inc/arm_math.h ../Drivers/CMSIS/Include/cmsis_compiler.h \
+ ../Core/Inc/kalman_filtre.h
 
 ../Core/Inc/main.h:
 
@@ -97,8 +95,6 @@ Core/Src/stm32l4xx_hal_msp.o: ../Core/Src/stm32l4xx_hal_msp.c \
 
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_i2c_ex.h:
 
-../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_ospi.h:
-
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr.h:
 
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h:
@@ -120,10 +116,6 @@ Core/Src/stm32l4xx_hal_msp.o: ../Core/Src/stm32l4xx_hal_msp.c \
 ../Core/Inc/../Components/lsm6dsl/../Common/accelero.h:
 
 ../Core/Inc/../Components/lsm6dsl/../Common/gyro.h:
-
-../Core/Inc/stm32l4s5i_iot01_qspi.h:
-
-../Core/Inc/../Components/mx25r6435f/mx25r6435f.h:
 
 ../Core/Inc/arm_math.h:
 

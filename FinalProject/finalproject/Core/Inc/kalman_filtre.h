@@ -8,6 +8,10 @@
 #ifndef INC_KALMAN_FILTRE_H_
 #define INC_KALMAN_FILTRE_H_
 
+/**
+ *  Kalman filtre struct with five floating point parameters.
+ *
+ */
 struct kalman_filtre{
 	float q; //process noise covariance
 	float r; //measurement noise covariance
@@ -16,13 +20,9 @@ struct kalman_filtre{
 	float k; //adaptive kalman filtre gain
 };
 
-// outputs a kalman filtre struct from five kalman parameters
+
 struct kalman_filtre create_filtre (float q, float r, float x, float p, float k);
-
-// function to update kalman filtre in C
 float c_kalman_update(struct kalman_filtre* kalman_filtre, float measurement);
-
-// function to populate the output array with kalman_filtre.x after each update using c function
 int c_kalman_filtre(float input_array[], float output_array[], struct kalman_filtre* kstate, int length);
 
 
